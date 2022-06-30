@@ -24,11 +24,7 @@ pnpm install
 
 # Run Project
 
-Once the dependencies are installed:
-
-### Client
-
-just run:
+Once the dependencies are installed; just run:
 
 ```sh
 npm run start
