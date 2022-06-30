@@ -28,7 +28,7 @@ Once the dependencies are installed:
 
 ### Client
 
-For Frontend, just run:
+just run:
 
 ```sh
 npm run start
