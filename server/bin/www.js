@@ -9,7 +9,7 @@ import http from "http";
 
 import app from "../app.js";
 
-const debug = debugLib("server:server");
+const debug = debugLib("chat-app:server");
 
 /**
  * Get port from environment and store in Express.
@@ -46,6 +46,7 @@ function normalizePort(val) {
 
   if (port >= 0) {
     // port number
+    console.log(`Running on port: ${port}`)
     return port;
   }
 
