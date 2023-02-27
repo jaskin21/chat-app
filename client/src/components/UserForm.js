@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { loginUser, registerUser } from '../utils/UseData';
 
 import '../styles/components/userForm.css';
-
-async function loginUser(credentials) {
-  try {
-    console.log();
-    const response = await axios.post(
-      'http://localhost:5000/auth/login',
-      credentials
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 const UserForm = ({ setToken }) => {
   const [active, setActive] = useState({
@@ -35,12 +22,23 @@ const UserForm = ({ setToken }) => {
     });
   };
 
+  const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const handleSubmit = async (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
     const handleSubmitToken = await loginUser({
+      email: email.toString(),
+      password: password.toString(),
+    });
+    setToken(handleSubmitToken);
+  };
+
+  const handleSubmitRegister = async (e) => {
+    e.preventDefault();
+    const handleSubmitToken = await registerUser({
+      username: username.toString(),
       email: email.toString(),
       password: password.toString(),
     });
@@ -61,7 +59,7 @@ const UserForm = ({ setToken }) => {
               Login
               <span className='underline'></span>
             </button>
-            <form className='form form-login' onSubmit={handleSubmit}>
+            <form className='form form-login' onSubmit={handleSubmitLogin}>
               <fieldset>
                 <legend>
                   Please, enter your email and password for login.
@@ -99,7 +97,7 @@ const UserForm = ({ setToken }) => {
               Sign Up
               <span className='underline'></span>
             </button>
-            <form className='form form-signup'>
+            <form className='form form-signup' onSubmit={handleSubmitRegister}>
               <fieldset>
                 <legend>
                   Please, enter your email, password and password confirmation
@@ -107,15 +105,30 @@ const UserForm = ({ setToken }) => {
                 </legend>
                 <div className='input-block'>
                   <label htmlFor='signup-username'>Username</label>
-                  <input id='signup-username' type='text' required />
+                  <input
+                    id='signup-username'
+                    type='text'
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
                 </div>
                 <div className='input-block'>
                   <label htmlFor='signup-email'>E-mail</label>
-                  <input id='signup-email' type='email' required />
+                  <input
+                    id='signup-email'
+                    type='email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
                 <div className='input-block'>
                   <label htmlFor='signup-password'>Password</label>
-                  <input id='signup-password' type='password' required />
+                  <input
+                    id='signup-password'
+                    type='password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                 </div>
               </fieldset>
               <button type='submit' className='btn-signup'>

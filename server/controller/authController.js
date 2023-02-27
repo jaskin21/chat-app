@@ -37,8 +37,19 @@ export const registerUser = async (req, res) => {
 
   try {
     await userDetails.save();
+    //Checking if email exist
+    const searchUser = await User.findOne({ email: req.body.email })
+      .select(['email', 'password', 'username'])
+      .exec();
 
-    return responseFactory(res, 201, { message: 'Successfully registered' });
+    // Create and assign a token
+    const { _id, username, email } = searchUser;
+    const token = signToken(_id, username, email);
+
+    return responseFactory(res, 201, {
+      message: 'Successfully registered',
+      token,
+    });
   } catch (err) {
     return errorResponseFactory(
       res,
