@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/components/chat.css';
+import '../styles/pages/chat.css';
 
 const Chat = ({ setCurrentRoom, currentRoom }) => {
   const devGroupClick = (groupName) => {
@@ -10,17 +10,12 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
 
   return (
     <main className='main-container'>
-      <h1 className='banner-chat'>
-        SHARE IDEA, CREATE AND ONNOVATE, JOIN US NOW!
-      </h1>
-      <Link className='card-chat' id='project-1' to='/'>
-        Profile
-      </Link>
+      <h1 className='banner-chat'>PLEASE SELECT A ROOM TO JOIN.</h1>
 
       <div className='container-chat'>
         <Link
           className='link'
-          onClick={() => devGroupClick('Managers')}
+          onClick={() => devGroupClick('designer')}
           to='/conversation'
         >
           <div className='items'>
@@ -34,7 +29,7 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
         </Link>
         <Link
           className='link'
-          onClick={() => devGroupClick('Managers')}
+          onClick={() => devGroupClick('manager')}
           to='/conversation'
         >
           <div className='items'>
@@ -49,7 +44,7 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
 
         <Link
           className='link'
-          onClick={() => devGroupClick('Managers')}
+          onClick={() => devGroupClick('developer')}
           to='/conversation'
         >
           <div className='items'>

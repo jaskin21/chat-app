@@ -7,6 +7,16 @@
   text-decoration: none;
 }
 
+.banner-chat,
+.container-chat,
+.items {
+  padding: 20px;
+}
+
+.profile-chat {
+  height: 100px;
+}
+
 .container-chat {
   width: 700px;
   top: 0;
@@ -63,10 +73,12 @@
 
 .items:hover {
   border: 3px solid gray;
+  background: #e1e1e1;
 }
 
 .items:hover .project-name p {
   transform: translateY(-10px);
+  color: black;
 }
 
 .items:hover .icon-wrapper i {
