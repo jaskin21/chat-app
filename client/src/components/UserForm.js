@@ -48,7 +48,7 @@ const UserForm = ({ setToken }) => {
   return (
     <main className='main-container'>
       <section className='forms-section'>
-        <h1 className='section-title'>Hi! Welcome to Chat App</h1>
+        <h1 className='section-title'>CHAT APP</h1>
         <div className='forms'>
           <div className={`form-wrapper ${active.login}`}>
             <button
