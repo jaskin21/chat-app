@@ -1,24 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { Link } from 'react-router-dom';
 import '../styles/components/conversation.css';
 
-const socket = io('http://localhost:5000');
-
 const Conversation = ({ setCurrentRoom, currentRoom }) => {
+  const socket = io.connect('http://localhost:5000');
+  //Room State
+  const [room, setRoom] = useState('');
+
+  // Messages States
+  const [message, setMessage] = useState('');
+  const [messageReceived, setMessageReceived] = useState('');
+
+  const joinRoom = () => {
+    if (room !== '') {
+      socket.emit('join_room', room);
+    }
+  };
+
+  const sendMessage = () => {
+    socket.emit('send_message', { message, room });
+  };
+
   useEffect(() => {
-    socket.on('message', (data) => {
-      console.log(data);
+    socket.on('receive_message', (data) => {
+      setMessageReceived(data.message);
     });
-  }, []);
+  }, [socket]);
 
   const exitChatClick = () => {
     setCurrentRoom('');
   };
-  console.log(currentRoom);
+
   return (
     <div className='main-container'>
       <div className='chat-container'>
+        <input
+          placeholder='Room Number...'
+          onChange={(event) => {
+            setRoom(event.target.value);
+          }}
+        />
+        <button onClick={joinRoom}> Join Room</button>
+
+        <h1> Message:</h1>
+        {messageReceived}
         <header className='chat-header'>
           <Link onClick={exitChatClick} to='/' className='btn'>
             Leave Room
@@ -29,7 +55,7 @@ const Conversation = ({ setCurrentRoom, currentRoom }) => {
             <h3>
               <i className='fas fa-comments'></i> Room Name:
             </h3>
-            <h2 id='room-name'>JavaScript</h2>
+            <h2 id='room-name'>{currentRoom}</h2>
             <h3>
               <i className='fas fa-users'></i> Users
             </h3>
@@ -70,8 +96,11 @@ const Conversation = ({ setCurrentRoom, currentRoom }) => {
               placeholder='Enter Message'
               required
               autoComplete='off'
+              onChange={(event) => {
+                setMessage(event.target.value);
+              }}
             />
-            <button className='btn'>
+            <button className='btn' onClick={sendMessage}>
               <i className='fas fa-paper-plane'></i> Send
             </button>
           </form>

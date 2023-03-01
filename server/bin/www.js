@@ -27,19 +27,19 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3001',
+    origin: 'http://localhost:3002',
     credentials: true,
   },
 });
 
 io.on('connection', (socket) => {
-  socket.emit('message', 'Welcome to ChatCord');
+  socket.emit('join_room', 'Welcome Chatbox!');
 
-  socket.broadcast.emit('message', 'a user has joined the chat');
-
-  socket.on('disconnect', () => {
-    io.emit('message', 'a user has left the chat');
+  socket.on('join_room', (data) => {
+    socket.join(data);
   });
+
+  socket.broadcast.emit('send_message', 'a user has joined the chat');
 });
 
 /**

@@ -15,7 +15,7 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
       <div className='container-chat'>
         <Link
           className='link'
-          onClick={() => devGroupClick('designer')}
+          onClick={() => devGroupClick('Designers')}
           to='/conversation'
         >
           <div className='items'>
@@ -29,7 +29,7 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
         </Link>
         <Link
           className='link'
-          onClick={() => devGroupClick('manager')}
+          onClick={() => devGroupClick('Managers')}
           to='/conversation'
         >
           <div className='items'>
@@ -44,7 +44,7 @@ const Chat = ({ setCurrentRoom, currentRoom }) => {
 
         <Link
           className='link'
-          onClick={() => devGroupClick('developer')}
+          onClick={() => devGroupClick('Developers')}
           to='/conversation'
         >
           <div className='items'>
