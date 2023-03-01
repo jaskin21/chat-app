@@ -1,10 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import UserForm from '../components/UserForm';
+import UseToken from './UseToken';
 
 const withAuth = (Component) => {
+  const { setToken } = UseToken();
   const isAuthenticated = localStorage.getItem('token');
 
-  return isAuthenticated ? <Component /> : <Navigate to='/login' />;
+  return isAuthenticated ? Component : <UserForm setToken={setToken} />;
 };
 
 export default withAuth;
