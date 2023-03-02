@@ -6,7 +6,7 @@ import Signup from './components/Signup';
 import withAuth from './utils/withAuth';
 import NotFound from './pages/NotFound';
 
-const socket = socketIO.connect('http://localhost:5000');
+const socket = socketIO.connect(`${process.env.SOCKET_LISTENER}`);
 function App() {
   return (
     <BrowserRouter>
