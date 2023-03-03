@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import UseToken from '../utils/UseToken';
 import '../styles/components/login.css';
+import { ToastContainer } from 'react-toastify';
 
 import { loginUser } from '../utils/UseData';
-import UserError from './UserError';
+import { showErrorMessage } from './ToastifyNotification';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Login = () => {
     }
     if (status.toString() !== 'Success') {
       setError(error || handleSubmitToken.error);
+      showErrorMessage(error || handleSubmitToken.error);
     }
   };
 
@@ -59,7 +61,7 @@ const Login = () => {
               required
             />
           </div>
-          {error ? <UserError error={error} /> : ''}
+          <ToastContainer />
           <Link to='/notfound' className='link'>
             Forgot Your Password?
           </Link>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UseToken from '../utils/UseToken';
 import { registerUser } from '../utils/UseData';
-import UserError from './UserError';
+import { ToastContainer } from 'react-toastify';
+import { showErrorMessage } from './ToastifyNotification';
 
 const Signup = () => {
   const { setToken } = UseToken();
@@ -39,8 +40,9 @@ const Signup = () => {
       window.location.reload();
     }
     if (status.toString() !== 'Success') {
-      setError(handleSubmitToken.error);
+      setError(handleSubmitToken.error || error);
       console.log(handleSubmitToken);
+      showErrorMessage(handleSubmitToken.error || error);
     }
   };
 
@@ -76,7 +78,7 @@ const Signup = () => {
               required
             />
           </div>
-          {error ? <UserError error={error} /> : ''}
+          <ToastContainer />
         </div>
         <div className='action'>
           <button type='submit'>Register</button>
