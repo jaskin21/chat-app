@@ -10,7 +10,7 @@ const Home = ({ socket }) => {
   const [userName, setUserName] = useState('');
   const { setToken } = UseToken();
 
-  const handleSubmit = (e) => {
+  const handleClickStartChat = () => {
     //sends the username and socket ID to the Node.js server
     socket.emit('newUser', { userName, socketID: socket.id });
     navigate('/chat');
@@ -48,21 +48,22 @@ const Home = ({ socket }) => {
     setToken();
     navigate('/login');
   };
+
   return (
     <>
-      <form className='home__container' onSubmit={handleSubmit}>
+      <div className='home__container'>
         <div className='home-input-text'>
           <p className='message'>
             Welcome to Chat App<span></span>
           </p>
         </div>
-        <button type='submit' className='home__cta-button'>
+        <button className='home__cta-button' onClick={handleClickStartChat}>
           ENTER
         </button>
         <Link className='home__cta' onClick={() => handleLogout()}>
           LOGOUT
         </Link>
-      </form>
+      </div>
     </>
   );
 };

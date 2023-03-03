@@ -30,12 +30,12 @@
   width: 0;
   background: #fff;
   border-left: 4px solid #167ff0;
-  animation-name: typing, blinking;
-  animation-duration: 5s, 1s;
-  animation-iteration-count: 1, infinite;
-  animation-timing-function: steps(21, end), steps(1, end);
+  animation-name: -webkit-animation-name;
+  animation-duration: -webkit-animation-duration;
+  animation-iteration-count: -webkit-animation-iteration-count;
+  animation-timing-function: -webkit-animation-timing-function;
   -webkit-animation-name: typing, blinking;
-  -webkit-animation-duration: 5s, 1s;
+  -webkit-animation-duration: 1s, 0.5s;
   -webkit-animation-iteration-count: 1, infinite;
   -webkit-animation-timing-function: steps(21, end), steps(1, end);
 }

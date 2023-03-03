@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UseToken from '../utils/UseToken';
 import { registerUser } from '../utils/UseData';
+import UserError from './UserError';
 
 const Signup = () => {
   const { setToken } = UseToken();
@@ -10,6 +11,7 @@ const Signup = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,12 +26,22 @@ const Signup = () => {
   };
 
   const handleSubmitRegister = async (e) => {
+    e.preventDefault();
     const handleSubmitToken = await registerUser({
       username: username.toString(),
       email: email.toString(),
       password: password.toString(),
     });
-    setToken(handleSubmitToken);
+    const status = handleSubmitToken.status;
+    if (status.toString() === 'Success') {
+      setToken(handleSubmitToken);
+      console.log('success');
+      window.location.reload();
+    }
+    if (status.toString() !== 'Success') {
+      setError(handleSubmitToken.error);
+      console.log(handleSubmitToken);
+    }
   };
 
   return (
@@ -64,6 +76,7 @@ const Signup = () => {
               required
             />
           </div>
+          {error ? <UserError error={error} /> : ''}
         </div>
         <div className='action'>
           <button type='submit'>Register</button>

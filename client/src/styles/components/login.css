@@ -107,3 +107,7 @@ body {
 .login-form .action button:nth-child(2):hover {
   background: #d8d8d8;
 }
+
+.user-error {
+  color: red;
+}

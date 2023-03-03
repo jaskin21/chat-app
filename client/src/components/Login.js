@@ -4,6 +4,7 @@ import UseToken from '../utils/UseToken';
 import '../styles/components/login.css';
 
 import { loginUser } from '../utils/UseData';
+import UserError from './UserError';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Login = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState('');
 
   const handleClickRegister = (e) => {
     e.preventDefault();
@@ -23,8 +25,15 @@ const Login = () => {
       email: email.toString(),
       password: password.toString(),
     });
-    setToken(handleSubmitToken);
-    window.location.reload();
+    const status = handleSubmitToken.status;
+    if (status.toString() === 'Success') {
+      setToken(handleSubmitToken);
+      console.log('success');
+      window.location.reload();
+    }
+    if (status.toString() !== 'Success') {
+      setError(error || handleSubmitToken.error);
+    }
   };
 
   return (
@@ -50,6 +59,7 @@ const Login = () => {
               required
             />
           </div>
+          {error ? <UserError error={error} /> : ''}
           <Link to='/notfound' className='link'>
             Forgot Your Password?
           </Link>
