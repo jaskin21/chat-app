@@ -17,7 +17,7 @@
 # Requirements
 
 - [Node JS](https://nodejs.dev)
-- [pnpm](https://pnpm.io)
+- [npm](https://pnpm.io)
 - [Mongo DB](https://www.mongodb.com) _(Optional)_
 
 ---
@@ -86,7 +86,7 @@ For the Frontend:
 
 | ENV VARIABLE      | DESCRIPTION     | TYPE     | REQUIRED | DEFAULT VALUE           |
 | :---------------- | :-------------- | :------- | -------- | ----------------------- |
-| `SOCKET_LISTENER` | The Backend URL | `string` | NO       | `http://localhost:5000` |
+|  |  |  |      |  |
 
 ---
 
