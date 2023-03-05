@@ -33,8 +33,8 @@ const Login = () => {
       window.location.reload();
     }
     if (status.toString() !== 'Success') {
-      setError(error || handleSubmitToken.error);
-      showErrorMessage(error || handleSubmitToken.error);
+      setError('Invalid email or password');
+      showErrorMessage('Invalid email or password');
     }
   };
 
