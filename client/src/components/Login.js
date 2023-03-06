@@ -13,7 +13,6 @@ const Login = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState('');
 
   const handleClickRegister = (e) => {
     e.preventDefault();
@@ -33,7 +32,6 @@ const Login = () => {
       window.location.reload();
     }
     if (status.toString() !== 'Success') {
-      setError('Invalid email or password');
       showErrorMessage('Invalid email or password');
     }
   };

@@ -12,16 +12,12 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Routes>
-          <Route
-            index
-            element={withAuth(<Home socket={socket} />)}
-            path='/'
-          ></Route>
+          <Route index element={withAuth(<Home socket={socket} />)} path='/' />
           <Route
             path='/chat'
             element={withAuth(<ChatPage socket={socket} />)}
-          ></Route>
-          <Route path='/signup' element={<Signup />}></Route>
+          />
+          <Route path='/signup' element={<Signup />} />
           <Route element={<NotFound />} path='*' />
         </Routes>
       </div>

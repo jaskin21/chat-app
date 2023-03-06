@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+/**
+ *
+ * @param {string} credentials
+ * @returns json data or error
+ */
 export const loginUser = async (credentials) => {
   try {
     const response = await axios.post(
@@ -12,6 +17,11 @@ export const loginUser = async (credentials) => {
   }
 };
 
+/**
+ *
+ * @param {string} credentials
+ * @returns json data or error
+ */
 export const registerUser = async (credentials) => {
   try {
     const response = await axios.post(

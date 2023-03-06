@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+/**
+ *
+ * @returns set token to localhost
+ */
 export default function UseToken() {
   const getToken = () => {
     const tokenString = localStorage.getItem('token');
