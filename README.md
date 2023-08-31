@@ -1,4 +1,4 @@
-# Chat App - Final Assessment Part 4 <!-- omit in toc -->
+# Chat App <!-- omit in toc -->
 
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -29,7 +29,10 @@
 For Client (or Frontend), just run
 
 ```sh
-npm install --dir client
+npm cd client
+```
+```sh
+npm install
 ```
 
 ### Server
@@ -37,7 +40,10 @@ npm install --dir client
 For Server (or Backend), just run
 
 ```sh
-npm install --dir server
+npm cd server
+```
+```sh
+npm install
 ```
 
 ---
@@ -51,7 +57,10 @@ Once the dependencies are installed:
 For Frontend, just run:
 
 ```sh
-npm run --dir client start
+cd client
+```
+```sh
+npm run start
 ```
 
 ### Server
@@ -59,7 +68,10 @@ npm run --dir client start
 For Backend, just run:
 
 ```sh
-npm run --dir server dev
+cd server
+```
+```sh
+npm run dev
 ```
 
 ---
@@ -74,12 +86,13 @@ For the Backend:
 
 | ENV VARIABLE       | DESCRIPTION                 | TYPE               | REQUIRED | DEFAULT VALUE               |
 | :----------------- | :-------------------------- | :----------------- | :------- | :-------------------------- |
-| `DB_CONNECTION`    | For Mongo DB, usually the   | `string`           | NO       | `mongodb://localhost:27017` |
+| `DB_CONNECTION`    | For Mongo DB, usual database| `string`           | NO       | `mongodb://localhost:27017` |
 | `DB_NAME`          | For Mongo DB, the database  | `string`           | YES      | Any                         |
 | `PORT`             | The Port of the             | `number`           | NO       | `5000`                      |
 | `TOKEN_EXPIRES_IN` | When will the Token expires | `string \| number` | YES      | N/A                         |
 | `TOKEN_SECRET`     | The Token Secret for        | `string`           | YES      | N/A                         |
 
+Note: for DB_CONNECTION it is better to configure and connect your own Mongo Db with user credentials
 ### Client
 
 For the Frontend:
